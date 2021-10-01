@@ -2,9 +2,13 @@
 package com.golovackii.mikhail.demo.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.time.LocalDate;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -35,7 +39,9 @@ public class Volunteer extends BaseEntity{
     @Column(name = "specification")
     private String specification;
     
-//    @OneToMany(mappedBy = "idVolunteer")
-//    private List<Pet> pets;
+    @OneToMany(mappedBy = "volunteer")
+    @JsonBackReference
+    @JsonIgnore
+    private List<Pet> pets;
     
 }

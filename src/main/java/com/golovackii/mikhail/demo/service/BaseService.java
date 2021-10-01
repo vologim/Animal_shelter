@@ -13,5 +13,4 @@ public interface BaseService<T>{
     
     void delete(Integer id);
     
-    
 }

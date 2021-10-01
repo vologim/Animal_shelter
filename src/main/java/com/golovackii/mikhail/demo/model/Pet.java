@@ -1,9 +1,13 @@
 
 package com.golovackii.mikhail.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -43,8 +47,14 @@ public class Pet extends BaseEntity{
     @Column(name = "specification")
     private String specification;
     
-//    @ManyToOne
-//    @JoinColumn(name = "id_volonteer")
-//    private Volunteer idVolunteer;
+    @ManyToOne
+    @JoinColumn(name = "id_volunteer")
+    @JsonManagedReference
+    private Volunteer volunteer;
     
+    @ManyToOne
+    @JoinColumn(name = "id_nurserys")
+    @JsonManagedReference
+    @JsonIgnore
+    private Nursery nursery;
 }
